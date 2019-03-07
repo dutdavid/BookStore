@@ -1,36 +1,27 @@
 package com.moringa.bookstore;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.moringa.bookstore.R;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class BooksActivity extends AppCompatActivity {
-    @BindView(R.id.locationTextView) TextView mLocationTextView;
-    @BindView(R.id.listView) ListView mListView;
+    public static final String TAG = BooksActivity.class.getSimpleName();
 
-    private String[] books = new String[] {"Mortal kombat 11", "FIFA 19",
-            "Far Cry 5 ", "Boarderlands", "Apex Legends", "PUBG",
-            "Far Cry New Dawn", "Ghost Recon", "NBA 2k19", "Just Cause 4",
-            "Jump Force", "Battle Field 5", "Yakuza 0", "Initial Stage 2",
-            "Lords of The Fallen", "Project Cars 2", "Devil May Cry 5",
-            "Call of Duty world war 2", "Sniper elite 4"};
-    private String[] authors = new String[] {"NetherRealm Studios", "EA sports", "Ubisoft",
-            "Gearbox", "Origin", "Bluehole", "Ubisoft", "Ubisoft", "2ksports", "Avalanche studios",
-            "SPIKE CHUNSOFT", "EA DICE", "SEGA", "Steam", "CI Games", "Code masters",
-            "Capcom", "sledgehammer games", "Rebellion Developments" };
+    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
+    private BooksArrayAdapter mAdapter;
 
+    public ArrayAdapter<books> books = new ArrayAdapter<>;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,17 +31,37 @@ public class BooksActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
-        BooksArrayAdapter adapter = new BooksArrayAdapter(this, android.R.layout.simple_list_item_1, books, authors);
-        mListView.setAdapter(adapter);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l){
-                String restaurant = ((TextView)view).getText().toString();
-                Toast.makeText(BooksActivity.this, restaurant, Toast.LENGTH_LONG).show();
-            }
-        });
-        mLocationTextView.setText("This are all the genres under: " + location);
+
+        getBooks(location);
     }
 
+    private void getBooks(String location) {
+        final GoodReadsServices GoodReadsServices = new GoodReadsServices();
 
+        GoodReadsServices.findBooks(location, new Callback() {
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) {
+                books = GoodReadsServices.processResults(response);
+
+                BooksActivity.this.runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        mAdapter = new BooksArrayAdapter(getApplicationContext(), books);
+                        mRecyclerView.setAdapter(mAdapter);
+                        RecyclerView.LayoutManager layoutManager =
+                                new LinearLayoutManager(BooksActivity.this);
+                        mRecyclerView.setLayoutManager(layoutManager);
+                        mRecyclerView.setHasFixedSize(true);
+                    }
+                });
+            }
+        });
+    }
 }
