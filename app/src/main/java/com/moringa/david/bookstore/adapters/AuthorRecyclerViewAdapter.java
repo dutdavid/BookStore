@@ -10,9 +10,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
 import com.moringa.david.bookstore.AuthorViewActivity;
-import com.example.ananthu.getbooks3.R;
+import com.moringa.david.bookstore.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

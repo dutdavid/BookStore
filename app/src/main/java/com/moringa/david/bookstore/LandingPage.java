@@ -102,7 +102,7 @@ public class LandingPage extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_landing_page, menu);
+        getMenuInflater().inflate(R.menu.menu_landing, menu);
         return true;
     }
 
