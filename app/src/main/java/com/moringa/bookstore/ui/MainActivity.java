@@ -1,4 +1,4 @@
-package com.moringa.bookstore;
+package com.moringa.bookstore.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.moringa.bookstore.models.Book;
+import com.moringa.bookstore.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

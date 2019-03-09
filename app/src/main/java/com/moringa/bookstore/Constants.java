@@ -1,6 +1,8 @@
 package com.moringa.bookstore;
 
 
+import com.moringa.bookstore.BuildConfig;
+
 public class Constants {
     public static final String BASE_URL = "https://www.goodreads.com/search/index.xml";
     public static final String API_PARAMETER = "key";

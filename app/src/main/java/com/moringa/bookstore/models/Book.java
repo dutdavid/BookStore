@@ -1,4 +1,4 @@
-package com.moringa.bookstore;
+package com.moringa.bookstore.models;
 
 
 import java.io.Serializable;

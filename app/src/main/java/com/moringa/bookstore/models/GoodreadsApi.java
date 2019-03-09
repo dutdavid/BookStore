@@ -1,4 +1,4 @@
-package com.moringa.bookstore;
+package com.moringa.bookstore.models;
 
 
 import com.google.gson.Gson;
@@ -9,7 +9,7 @@ import com.moringa.bookstore.Constants;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import org.json.XML;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -23,7 +23,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class GoodReadsServices {
+public class GoodreadsApi {
     public static void findBooks(String bookSearched, Callback callback) {
         OkHttpClient client = new OkHttpClient.Builder().build();
 

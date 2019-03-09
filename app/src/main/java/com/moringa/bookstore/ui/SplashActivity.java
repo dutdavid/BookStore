@@ -1,11 +1,11 @@
-package com.moringa.bookstore;
+package com.moringa.bookstore.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.moringa.bookstore.MainActivity;
+import com.moringa.bookstore.ui.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
