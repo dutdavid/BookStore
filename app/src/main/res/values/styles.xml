@@ -3,10 +3,10 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/primaryColor</item>
-        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorPrimary">@color/Purple</item>
+        <item name="colorPrimaryDark">@color/primaryTextColor</item>
         <item name="colorAccent">@color/secondaryColor</item>
-        <item name="android:titleTextColor">@color/primaryDarkColor</item>
+        <item name="android:titleTextColor">@color/primaryTextColor</item>
         <item name="android:windowContentTransitions">true</item>
 
     </style>
@@ -17,7 +17,7 @@
     </style>
 
     <style name="AppTheme.ActionBar.Text" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:textColor">@color/primaryDarkColor</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
