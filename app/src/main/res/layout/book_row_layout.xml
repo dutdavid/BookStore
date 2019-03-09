@@ -53,8 +53,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:progressTint="@color/primaryDarkColor"
-                    android:secondaryProgressTint="@color/primaryDarkColor"
+                    android:progressTint="@color/primaryTextColor"
+                    android:secondaryProgressTint="@color/Purple"
                     android:layout_gravity="center"/>
                 <TextView
                     android:layout_marginStart="4dp"
