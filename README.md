@@ -33,7 +33,6 @@
 - on the next screen click the small search icon
 - type the book you want to see then click enter
 - click o the book to see description
-- click on the favorite link below the rating to add book to favorite
 - click on the author to view author details
 ## Known Bugs
 -No known bugs
