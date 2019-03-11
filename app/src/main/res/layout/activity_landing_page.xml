@@ -12,7 +12,7 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/kitabu"
+        app:srcCompat="@drawable/books"
         tools:layout_editor_absoluteX="55dp"
         tools:layout_editor_absoluteY="130dp" />
 
