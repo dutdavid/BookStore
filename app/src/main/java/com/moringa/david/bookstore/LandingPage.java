@@ -45,6 +45,11 @@ public class LandingPage extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            // User is logged in
+        }
+
+        auth = FirebaseAuth.getInstance();
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -164,7 +169,9 @@ public class LandingPage extends AppCompatActivity {
                 }
             }
         }
+
     }
+
     @Override
     public void onStart() {
         super.onStart();

@@ -9,6 +9,16 @@
     tools:context="com.moringa.david.bookstore.LandingPage">
 
 
+    <Button
+        android:id="@+id/sign_out"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/btn_sign_out"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -23,7 +33,7 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/books"
+
         tools:layout_editor_absoluteX="55dp"
         tools:layout_editor_absoluteY="130dp" />
 
