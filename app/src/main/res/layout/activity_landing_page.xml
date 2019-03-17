@@ -8,6 +8,27 @@
     android:fitsSystemWindows="true"
     tools:context="com.moringa.david.bookstore.LandingPage">
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/textView1"
+        android:textColor="@color/secondaryColor"
+        android:textStyle="bold"
+        android:layout_marginTop="100dp"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/kullaniciSil"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Delete User"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:background="@android:color/holo_blue_bright"/>
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"

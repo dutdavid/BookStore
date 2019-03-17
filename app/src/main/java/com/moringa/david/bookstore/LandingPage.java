@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -14,6 +15,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.moringa.david.bookstore.adapters.BookRecyclerViewAdapter;
 import com.moringa.david.bookstore.model.Book;
 import com.moringa.david.bookstore.model.BookBuilder;
@@ -24,13 +28,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LandingPage extends AppCompatActivity {
-
     private final int INTERNET_PERMISSION = 1;
     private GoodreadRequest mGoodreadRequest;
     private com.moringa.david.bookstore.InternalStorage cache;
     private List<Book> books = new ArrayList<>();
+    private FirebaseAuth.AuthStateListener authListener;
+    private FirebaseAuth auth;
 
     private BookRecyclerViewAdapter bookRecyclerViewAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,20 @@ public class LandingPage extends AppCompatActivity {
         setContentView(R.layout.activity_landing_page);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        auth = FirebaseAuth.getInstance();
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        authListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user == null) {
+                    // user auth state is changed - user is null
+                    // launch login activity
+                    startActivity(new Intent(LandingPage.this, LoginActivity.class));
+                    finish();
+                }
+            }
+        };
 
         cache = new com.moringa.david.bookstore.InternalStorage(this);
 
@@ -56,6 +76,8 @@ public class LandingPage extends AppCompatActivity {
 
         requestInternetPermission();
 
+
+        //Api request
         mGoodreadRequest = new GoodreadRequest(getString(R.string.GR_API_Key), this);
 
 
@@ -138,9 +160,25 @@ public class LandingPage extends AppCompatActivity {
             case INTERNET_PERMISSION: {
                 if (grantResults.length <= 0
                         || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                            Toast.makeText(this, "Internet Access denied", Toast.LENGTH_SHORT).show();
-                        }
+                    Toast.makeText(this, "Internet Access denied", Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+        auth.addAuthStateListener(authListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (authListener != null) {
+            auth.removeAuthStateListener(authListener);
+        }
+    }
 }
+
+
+
