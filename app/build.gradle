@@ -59,5 +59,6 @@ dependencies {
     implementation 'com.firebase:firebase-client-android:2.5.2+'
     implementation 'com.google.android.gms:play-services-gcm:15.0.1'
     implementation 'com.google.android.gms:play-services-location:15.0.1'
+    implementation 'com.firebaseui:firebase-ui-auth:4.1.0'
 }
 apply plugin: 'com.google.gms.google-services'

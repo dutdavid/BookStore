@@ -35,9 +35,16 @@ public class LandingPage extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
 
+
     private BookRecyclerViewAdapter bookRecyclerViewAdapter;
 
-
+    private void logout() {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(LandingPage.this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +57,7 @@ public class LandingPage extends AppCompatActivity {
         }
 
         auth = FirebaseAuth.getInstance();
+
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -135,14 +143,14 @@ public class LandingPage extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_logout) {
+            logout();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
 
     private void requestInternetPermission() {
         if (ContextCompat.checkSelfPermission(this,
@@ -172,6 +180,7 @@ public class LandingPage extends AppCompatActivity {
         }
 
     }
+
 
     @Override
     public void onStart() {
