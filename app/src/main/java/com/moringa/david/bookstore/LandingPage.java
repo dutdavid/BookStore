@@ -131,6 +131,7 @@ public class LandingPage extends AppCompatActivity {
         }
     }
 
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
@@ -143,4 +144,5 @@ public class LandingPage extends AppCompatActivity {
             }
         }
     }
+
 }
