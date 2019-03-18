@@ -6,8 +6,7 @@
 - Java
 
 ## Description
-  An android application that uses good reads API to retrieve books details from good reads
-
+This is an android application that uses good reads API. The user is able to log in or create an account or reset password if its forgotten. The user is then able to search for a specific book and bookmark it for future reference.
 
 ### Prerequisites
    - Android SDK
