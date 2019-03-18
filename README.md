@@ -5,7 +5,7 @@
 ## Technologies Used
 - Java
 
-## Getting Started
+## Description
   An android application that uses good reads API to retrieve books details from good reads
 
 
@@ -29,11 +29,18 @@
    7.Press Enter. Your local clone will be created.
    
 ## How to use the application 
+- When Launched the login page appears
+- click the get registered in firebase link at the bottom of login page
+- enter your credentials and click register. Wait to sign you in
 - On the landing page click the blue search icon
 - on the next screen click the small search icon
 - type the book you want to see then click enter
+- click the favorite link under the rating to save your book/bookmark
 - click o the book to see description
 - click on the author to view author details
+- Go back to the landing page to see the saved book
+- click the overflow menu(3 dots) To reveal the log out menu
+- click the log out to log you out
 ## Known Bugs
 -No known bugs
 
