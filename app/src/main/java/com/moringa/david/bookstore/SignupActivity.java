@@ -16,7 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class SignupActivity extends AppCompatActivity {
+public class SignupActivity extends AppCompatActivity  {
 
     private EditText inputName,inputEmail, inputPassword;
     private Button btnSignIn, btnSignUp, btnResetPassword;
