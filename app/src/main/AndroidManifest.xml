@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".CameraActivity"></activity>
         <activity
             android:name=".SplashScreen"
             android:theme="@style/AppTheme.NoActionBar">
@@ -28,6 +29,7 @@
             android:name=".LandingPage"
             android:label="@string/title_activity_profile"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".SignupActivity"
             android:label="@string/title_activity_login"
@@ -40,6 +42,7 @@
             android:name=".BookViewActivity"
             android:label="@string/title_activity_book_view" />
         <activity android:name=".AuthorViewActivity" />
+
         <activity android:name=".search.SearchActivity" />
     </application>
 

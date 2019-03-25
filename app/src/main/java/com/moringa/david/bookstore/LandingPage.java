@@ -3,7 +3,9 @@ package com.moringa.david.bookstore;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
@@ -14,6 +16,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,6 +33,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LandingPage extends AppCompatActivity {
+
+    private ImageView image;
+    private Button btn;
+    private static final int RC_Request_code = 10;
+
     private final int INTERNET_PERMISSION = 1;
     private GoodreadRequest mGoodreadRequest;
     private com.moringa.david.bookstore.InternalStorage cache;
@@ -49,6 +59,7 @@ public class LandingPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         auth = FirebaseAuth.getInstance();
@@ -98,9 +109,40 @@ public class LandingPage extends AppCompatActivity {
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), SearchActivity.class)));
-
+        image = (android.widget.ImageView) findViewById(R.id.imageview6);
+        btn = (Button)findViewById(R.id.btn_cap);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                captureImage();
+            }
+        });
 
     }
+
+
+    private void captureImage() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(takePictureIntent, RC_Request_code);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode,resultCode,data);
+        if (requestCode==RC_Request_code){
+            if (resultCode==RESULT_OK){
+                Bitmap bp = (Bitmap) data.getExtras().get("data");
+                image.setScaleType (ImageView.ScaleType.FIT_CENTER);
+                image.setImageBitmap(bp);
+            }
+            else if (resultCode==RESULT_CANCELED){
+                android.widget.Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT).show();
+
+
+            }
+        }
+    }
+
+
 
 
     private void loadFavBooks() {
@@ -195,6 +237,7 @@ public class LandingPage extends AppCompatActivity {
             auth.removeAuthStateListener(authListener);
         }
     }
+
 
 }
 
